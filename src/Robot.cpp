@@ -13,7 +13,8 @@
 ExampleSubsystem* Robot::m_subsystem;
 OI* Robot::m_oi;
 DriveTrain* Robot::m_drivetrain;
-
+Arm* Robot::m_arm;
+Winch* Robot::m_winch;
 void Robot::RobotInit() {
 	//m_chooser.AddDefault("Default Auto", &m_defaultAuto);
 	//m_chooser.AddObject("My Auto", &m_myAuto);
@@ -30,6 +31,8 @@ void Robot::DisabledInit()
 	m_subsystem = new ExampleSubsystem();
 	m_oi = new OI();
 	m_drivetrain = new DriveTrain();
+	m_arm = new Arm();
+	m_winch= new Winch();
 }
 
 void Robot::DisabledPeriodic() {

@@ -11,7 +11,8 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <TimedRobot.h>
 
-
+#include "Subsystems/Winch.h"
+#include "Subsystems/Arm.h"
 #include "Commands/MyAutoCommand.h"
 #include "OI.h"
 #include "Subsystems/ExampleSubsystem.h"
@@ -22,7 +23,8 @@ public:
 	static ExampleSubsystem* m_subsystem;
 	static OI* m_oi;
 	static DriveTrain* m_drivetrain;
-
+	static Arm* m_arm;
+	static Winch*m_winch;
 	void RobotInit() override;
 	void DisabledInit() override;
 	void DisabledPeriodic() override;

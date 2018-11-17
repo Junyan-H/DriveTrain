@@ -5,27 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
+#include "Winch.h"
 #include "../RobotMap.h"
-#include "../Commands/TankDrive.h"
-#include "DriveTrain.h"
 
-DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(2)),right(new TalonSRX(3)) {
+Winch::Winch() : Subsystem("Winch"), winch(new TalonSRX(3)) {
 
 }
 
-void DriveTrain::InitDefaultCommand() {
+void Winch::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-	SetDefaultCommand(new TankDrive());
+
 }
 
+void Winch::move(double winchPower){
 
+	winch ->Set(ControlMode::PercentOutput, winchPower);
 
-void DriveTrain::tankDrive(double leftPower, double rightPower){
-	left ->Set(ControlMode::PercentOutput, leftPower);
-	right ->Set(ControlMode::PercentOutput,rightPower);
 }
-
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

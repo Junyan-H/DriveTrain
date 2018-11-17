@@ -6,14 +6,20 @@
 /*----------------------------------------------------------------------------*/
 
 #include "OI.h"
-
 #include <WPILib.h>
+#include "Commands/WinchMove.h"
 
 OI::OI()
-	:joyLeft(new Joystick(0)), joyRight(new Joystick(1))
+	:joyLeft(new Joystick(0)), joyRight(new Joystick(1)), joyArm(new Joystick(2)),
+	upWinch(new JoystickButton(joyLeft,1)), downWinch(new JoystickButton(joyLeft,2))
+
 {
 	// Process operator interface input here.
+	upWinch -> WhenPressed(new WinchMove(0.5));
+	downWinch -> WhenPressed(new WinchMove(-0.5));
+
 }
+
 
 Joystick* OI::getjoyStickLeft(){
 	return joyLeft;
@@ -21,3 +27,9 @@ Joystick* OI::getjoyStickLeft(){
 Joystick* OI::getjoyStickRight(){
 	return joyRight;
 }
+Joystick* OI::getjoyStickArm(){
+	return joyArm;
+}
+
+
+

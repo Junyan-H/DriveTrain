@@ -4,22 +4,23 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-#include <WPILib.h>
+
 #pragma once
 
-class OI {
+#include <Commands/Command.h>
+#include "Robot.h"
+
+class WinchMove : public frc::Command {
+
 private:
-	Joystick* joyLeft;
-	Joystick* joyRight;
-	Joystick* joyArm;
-	Button* upWinch;
-	Button* downWinch;
+	double speed;
 
 public:
-	Joystick* getjoyStickLeft();
-	Joystick* getjoyStickRight();
-	Joystick* getjoyStickArm();
-	Button* up();
-	Button* down();
-	OI();
+	WinchMove( double tempSpeed);
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
 };
+

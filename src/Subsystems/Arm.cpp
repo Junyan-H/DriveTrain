@@ -5,27 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
+#include "Arm.h"
 #include "../RobotMap.h"
-#include "../Commands/TankDrive.h"
-#include "DriveTrain.h"
+#include "Commands/ArmMove.h"
 
-DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(2)),right(new TalonSRX(3)) {
+	Arm::Arm() : Subsystem("Arm"), arm(new TalonSRX(4)) {
 
 }
 
-void DriveTrain::InitDefaultCommand() {
+void Arm::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
-	SetDefaultCommand(new TankDrive());
+	SetDefaultCommand(new ArmMove());
 }
+void Arm::move(double power){
+	arm ->Set(ControlMode::PercentOutput, power);
 
-
-
-void DriveTrain::tankDrive(double leftPower, double rightPower){
-	left ->Set(ControlMode::PercentOutput, leftPower);
-	right ->Set(ControlMode::PercentOutput,rightPower);
 }
-
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

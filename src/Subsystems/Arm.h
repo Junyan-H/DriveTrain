@@ -4,22 +4,22 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-#include <WPILib.h>
+
 #pragma once
 
-class OI {
+#include <Commands/Subsystem.h>
+#include <WPILib.h>
+#include <ctre/Phoenix.h>
+class Arm : public frc::Subsystem {
 private:
-	Joystick* joyLeft;
-	Joystick* joyRight;
-	Joystick* joyArm;
-	Button* upWinch;
-	Button* downWinch;
-
+	// It's desirable that everything possible under private except
+	// for methods that implement subsystem capabilities
+	TalonSRX* arm;
 public:
-	Joystick* getjoyStickLeft();
-	Joystick* getjoyStickRight();
-	Joystick* getjoyStickArm();
-	Button* up();
-	Button* down();
-	OI();
+	Arm();
+
+	void move(double power);
+
+	void InitDefaultCommand() override;
 };
+
